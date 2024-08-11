@@ -15,7 +15,7 @@ def imprimir_tablero(tablero):
         print(tablero_cadena)
     print()
 
-print ("instrucciones: el juego consiste en una tabla de 6x6 en la cual el primer jugador elige la casilla que desea, los numeros siguientes se deben colocar en la misma fila o columna, debe tener un camino ininterrumpido, cuando un jugador se queda sin movimientos pierde")
+print ("instrucciones: el juego consiste en una tabla de 6x6 en la cual el primer jugador elige la casilla que desea, los numeros siguientes se deben colocar en la misma columna o fila  fila o columna, debe tener un camino ininterrumpido, cuando un jugador se queda sin movimientos pierde")
 
 def asignar_valores(tablero, valor, turno, fila_anterior, columna_anterior):
     while True:
