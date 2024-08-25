@@ -1,2 +1,3 @@
+#Hola
 class Clase:
     pass
