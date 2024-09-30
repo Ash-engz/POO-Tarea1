@@ -1,7 +1,3 @@
-#el numero 1 se puede poner donde sea, el 2 se debe ponwe en la misma fila o columna 
-
-#un jugador pierde cuando no puede colocar un numero de manera legarl 
-#tiene que ser un camino ininterrumpido 
 tablero = [[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]
 
 def imprimir_tablero(tablero):
@@ -15,7 +11,20 @@ def imprimir_tablero(tablero):
         print(tablero_cadena)
     print()
 
-print ("instrucciones: el juego consiste en una tabla de 6x6 en la cual el primer jugador elige la casilla que desea, los numeros siguientes se deben colocar en la misma columna o fila  fila o columna, debe tener un camino ininterrumpido, cuando un jugador se queda sin movimientos pierde")
+print("Instrucciones: el juego consiste en una tabla de 6x6 en la cual el primer jugador elige la casilla que desea, los números siguientes se deben colocar en la misma columna o fila, y debe haber un camino ininterrumpido. Cuando un jugador se queda sin movimientos, pierde.")
+
+def es_movimiento_ininterrumpido(tablero, fila_anterior, columna_anterior, fila, columna):
+    if fila == fila_anterior:
+        paso = 1 if columna > columna_anterior else -1
+        for c in range(columna_anterior + paso, columna, paso):
+            if tablero[fila][c] == 0:
+                return False
+    elif columna == columna_anterior:
+        paso = 1 if fila > fila_anterior else -1
+        for f in range(fila_anterior + paso, fila, paso):
+            if tablero[f][columna] == 0:
+                return False
+    return True
 
 def asignar_valores(tablero, valor, turno, fila_anterior, columna_anterior):
     while True:
@@ -33,9 +42,12 @@ def asignar_valores(tablero, valor, turno, fila_anterior, columna_anterior):
                     if fila != fila_anterior and columna != columna_anterior:
                         print("Movimiento inválido. Debe estar en la misma fila o columna que el número anterior.")
                         continue
+                    if not es_movimiento_ininterrumpido(tablero, fila_anterior, columna_anterior, fila, columna):
+                        print("Movimiento inválido. El camino debe ser ininterrumpido.")
+                        continue
 
                 tablero[fila][columna] = valor
-                return fila, columna 
+                return fila, columna
             else:
                 print("La casilla ya está ocupada. Intente de nuevo.")
         except ValueError:
